@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "179354348193",
+    "project_id": "gemo-ai",
+    "storage_bucket": "gemo-ai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179354348193:android:6ecc909c4f5ffb02d0dee0",
+        "android_client_info": {
+          "package_name": "com.example.gemo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179354348193-4ana2sn6emfvh22i5a1u7p41mq8q2snj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6Qv5y1DPJK9Fv1pPLZ3_KxQEjms010CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "179354348193-4ana2sn6emfvh22i5a1u7p41mq8q2snj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
