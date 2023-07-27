@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gemo_app/services/handle_validation.dart';
 
 Image logoWidget(String imageName) {
   return Image.asset(
@@ -39,6 +40,82 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
   );
 }
 
+TextFormField reusableTextFormField(String fieldName, String text,
+    IconData icon, bool isPasswordType, TextEditingController controller) {
+  return TextFormField(
+      controller: controller,
+      obscureText: isPasswordType,
+      enableSuggestions: !isPasswordType,
+      autocorrect: !isPasswordType,
+      cursorColor: Colors.white,
+      style: TextStyle(color: Colors.white.withOpacity(0.9)),
+      decoration: InputDecoration(
+        prefixIcon: Icon(
+          icon,
+          color: Colors.white70,
+        ),
+        labelText: text,
+        labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+        filled: true,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        fillColor: Colors.white.withOpacity(0.3),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
+      ),
+      keyboardType: isPasswordType
+          ? TextInputType.visiblePassword
+          : TextInputType.emailAddress,
+      validator: (value) {
+        String validationResult =
+            ValidationService.generalValidation(value!, fieldName);
+        if (validationResult != "success") {
+          return validationResult;
+        }
+      });
+}
+
+TextFormField reusablePasswordFormField(
+    String text,
+    IconData icon,
+    bool isPasswordType,
+    TextEditingController _passwordTextController,
+    TextEditingController _confirmPasswordTextController) {
+  return TextFormField(
+      controller: _confirmPasswordTextController,
+      obscureText: isPasswordType,
+      enableSuggestions: !isPasswordType,
+      autocorrect: !isPasswordType,
+      cursorColor: Colors.white,
+      style: TextStyle(color: Colors.white.withOpacity(0.9)),
+      decoration: InputDecoration(
+        prefixIcon: Icon(
+          icon,
+          color: Colors.white70,
+        ),
+        labelText: text,
+        labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+        filled: true,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        fillColor: Colors.white.withOpacity(0.3),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
+      ),
+      keyboardType: isPasswordType
+          ? TextInputType.visiblePassword
+          : TextInputType.emailAddress,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "This field is required*";
+        }
+        if (_passwordTextController.value !=
+            _confirmPasswordTextController.value) {
+          return "Password mismatched.";
+        }
+      });
+}
+
 Container firebaseUIButton(BuildContext context, String title, Function onTap) {
   return Container(
     width: MediaQuery.of(context).size.width,
@@ -49,11 +126,6 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
       onPressed: () {
         onTap();
       },
-      child: Text(
-        title,
-        style: const TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
-      ),
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.pressed)) {
@@ -63,6 +135,11 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
+      child: Text(
+        title,
+        style: const TextStyle(
+            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
+      ),
     ),
   );
 }
@@ -78,11 +155,6 @@ Container getstartedButton(BuildContext context, String title, Function onTap) {
       onPressed: () {
         onTap();
       },
-      child: Text(
-        title,
-        style: const TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
-      ),
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.pressed)) {
@@ -92,6 +164,11 @@ Container getstartedButton(BuildContext context, String title, Function onTap) {
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
+      child: Text(
+        title,
+        style: const TextStyle(
+            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
+      ),
     ),
   );
 }
