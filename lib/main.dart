@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gemo_app/screens/signin.dart';
-import 'package:gemo_app/screens/welcome.dart';
-import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:gemo_app/wrapper.dart';
-import 'package:gemo_app/screens/signin.dart';
 
 //Remove developer mode
 
@@ -19,10 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gemo',
-      home: WelcomeScreen(),
+      home: Wrapper(),
     );
   }
 }
