@@ -32,7 +32,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           // crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
-            ElevatedButton(onPressed: () async {}, child: Text('Sign Out'))
+            ElevatedButton(onPressed: () async {
+              // dynamic result = await auth.signOut();
+            }, child: Text('Sign Out'))
           ],
         ),
       )
