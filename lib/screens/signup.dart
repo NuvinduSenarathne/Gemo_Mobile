@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
+import 'package:gemo_app/screens/mail_verification.dart';
 import 'package:gemo_app/screens/signin.dart';
 import 'package:gemo_app/services/handle_popup.dart';
 import 'package:gemo_app/widgets/reusable_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gemo_app/screens/dashboard.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: AppColors.backgroundColor,
+          backgroundColor: AppColors.PrimaryColor,
           body: Center(
             child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -41,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: <Widget>[
                         const Text("Register",
                             style: TextStyle(
-                                color: AppColors.whiteColor,
+                                color: AppColors.SecondaryColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30,
                                 fontFamily: 'VarelaRound')),
@@ -50,7 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         const Text("Create your account",
                             style: TextStyle(
-                                color: AppColors.whiteColor, fontSize: 20)),
+                                color: AppColors.SecondaryColor, fontSize: 20)),
                         const SizedBox(
                           height: 60,
                         ),
@@ -105,18 +105,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text("Already have an account?",
-                                style: TextStyle(color: AppColors.whiteColor)),
+                                style:
+                                    TextStyle(color: AppColors.SecondaryColor)),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => SignInScreen()));
+                                        builder: (context) =>
+                                            const SignInScreen()));
                               },
                               child: const Text(
                                 " Sign In",
                                 style: TextStyle(
-                                    color: AppColors.whiteColor,
+                                    color: AppColors.SecondaryColor,
                                     fontWeight: FontWeight.bold),
                               ),
                             )
@@ -134,42 +136,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 Future<void> _handleSignUp(
     BuildContext context,
-    TextEditingController _firstNameTextController,
-    TextEditingController _lastNameTextController,
-    TextEditingController _emailTextController,
-    TextEditingController _passwordTextController) async {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    TextEditingController firstNameTextController,
+    TextEditingController lastNameTextController,
+    TextEditingController emailTextController,
+    TextEditingController passwordTextController) async {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   try {
-    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-      email: _emailTextController.text,
-      password: _passwordTextController.text,
+    UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+      email: emailTextController.text,
+      password: passwordTextController.text,
     );
 
     if (userCredential.user != null) {
-      // Save additional user information to Firestore
-      await _firestore.collection('users').doc(userCredential.user!.uid).set({
-        'firstnamename': _firstNameTextController.text,
-        'lastname': _lastNameTextController.text,
+      await firestore.collection('users').doc(userCredential.user!.uid).set({
+        'firstnamename': firstNameTextController.text,
+        'lastname': lastNameTextController.text,
       });
 
-      // Navigate to DashboardScreen upon successful sign-up
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => DashboardScreen()),
+        MaterialPageRoute(builder: (context) => const MailVerificationScreen()),
       );
     }
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
-      PopUpMessageService.showError(context,
-          "Weak Password. Please enter strong password and try again.");
+      PopUpMessageService.showError(context, "Weak Password!",
+          "Please enter strong password and try again.");
     } else if (e.code == 'email-already-in-use') {
-      PopUpMessageService.showError(context, "Account already exists.");
+      PopUpMessageService.showError(
+          context, "Error Occured!", "Account already exists.");
     } else {
-      PopUpMessageService.showError(context, "Error occured while sign up.");
+      PopUpMessageService.showError(
+          context, "Error Occured!", "Please try again later.");
     }
   } catch (e) {
-    PopUpMessageService.showError(context, "Error occured while sign up.");
+    PopUpMessageService.showError(
+        context, "Error Occured!", "Please try again later.");
   }
 }

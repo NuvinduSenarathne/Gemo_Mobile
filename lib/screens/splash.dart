@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: AppColors.backgroundColor,
+          backgroundColor: AppColors.PrimaryColor,
           body: Stack(
             alignment: Alignment.center,
             children: [
@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: const Center(
                     child: Text('AI Powered Gem Advisor',
                         style: TextStyle(
-                            color: AppColors.whiteColor,
+                            color: AppColors.SecondaryColor,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Dosis')),

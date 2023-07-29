@@ -16,7 +16,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-            backgroundColor: AppColors.backgroundColor,
+            backgroundColor: AppColors.PrimaryColor,
             body: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,

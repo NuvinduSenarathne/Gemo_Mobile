@@ -1,30 +1,32 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
-import 'package:gemo_app/screens/dashboard.dart';
 import 'package:gemo_app/screens/signup.dart';
 import 'package:gemo_app/services/handle_popup.dart';
 import 'package:gemo_app/widgets/reusable_widget.dart';
 
+import '../services/mail_verification.dart';
+
 class SignInScreen extends StatefulWidget {
-  SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  MailVerificationService mailVerificationService = MailVerificationService();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: AppColors.backgroundColor,
+          backgroundColor: AppColors.PrimaryColor,
           body: Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -35,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       children: <Widget>[
                         const Text("Welcome Back",
                             style: TextStyle(
-                                color: AppColors.whiteColor,
+                                color: AppColors.SecondaryColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30,
                                 fontFamily: 'VarelaRound')),
@@ -44,7 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         const Text("Login to your account",
                             style: TextStyle(
-                                color: AppColors.whiteColor, fontSize: 20)),
+                                color: AppColors.SecondaryColor, fontSize: 20)),
                         const SizedBox(
                           height: 60,
                         ),
@@ -62,20 +64,19 @@ class _SignInScreenState extends State<SignInScreen> {
                         const SizedBox(
                           height: 40,
                         ),
-                        firebaseUIButton(context, "Sign In", () {
+                        firebaseUIButton(context, "Sign In", () async {
                           if (_formKey.currentState!.validate()) {
-                            FirebaseAuth.instance
+                            await FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
                                     email: _emailTextController.text,
                                     password: _passwordTextController.text)
                                 .then((value) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DashboardScreen()));
+                              mailVerificationService.manuallyRedirect(context);
                             }).onError((error, stackTrace) {
-                              PopUpMessageService.showError(context,
-                                  "Error occured while sign in. Please check your email and password again.");
+                              PopUpMessageService.showError(
+                                  context,
+                                  "Authentication Failed",
+                                  "Please check your email and password again.");
                             });
                           }
                         }),
@@ -83,18 +84,20 @@ class _SignInScreenState extends State<SignInScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text("Don't have account?",
-                                style: TextStyle(color: AppColors.whiteColor)),
+                                style:
+                                    TextStyle(color: AppColors.SecondaryColor)),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => SignUpScreen()));
+                                        builder: (context) =>
+                                            const SignUpScreen()));
                               },
                               child: const Text(
                                 " Sign Up",
                                 style: TextStyle(
-                                    color: AppColors.whiteColor,
+                                    color: AppColors.SecondaryColor,
                                     fontWeight: FontWeight.bold),
                               ),
                             )
