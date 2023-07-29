@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
+import 'package:gemo_app/screens/signin.dart';
+
+import '../services/auth.dart';
 
 class DashboardScreen extends StatefulWidget {
   DashboardScreen({Key? key}) : super(key: key);
@@ -9,6 +12,9 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+
+  final AuthService auth = AuthService();
+  
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -33,8 +39,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
             ElevatedButton(onPressed: () async {
-              // dynamic result = await auth.signOut();
-            }, child: Text('Sign Out'))
+              dynamic result = await auth.signOut();
+
+              if (result == 'Success') {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text('Successfully Signed Out'),
+                        ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>  SignInScreen()));
+                      } else {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text('Error signing out'),
+                        ));
+                      }
+            }, child: const Text('Sign Out'))
           ],
         ),
       )
