@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gemo_app/screens/splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:gemo_app/screens/welcome.dart';
+import 'package:gemo_app/screens/getstarted.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class Wrapper extends StatelessWidget {
           } else {
             final bool isFirstTimeOpen = snapshot.data ?? true;
             if (isFirstTimeOpen) {
-              return WelcomeScreen();
+              return const GetStartedScreen();
             } else {
               return const SplashScreen();
             }

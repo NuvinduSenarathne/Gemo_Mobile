@@ -26,16 +26,17 @@ class _SplashScreenState extends State<SplashScreen> {
       if (user != null) {
         return DashboardScreen();
       } else {
-        return SignInScreen();
+        return const SignInScreen();
       }
     }));
   }
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: AppColors.PrimaryColor,
+          backgroundColor: AppColors.primaryColor,
           body: Stack(
             alignment: Alignment.center,
             children: [
@@ -55,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: const Center(
                     child: Text('AI Powered Gem Advisor',
                         style: TextStyle(
-                            color: AppColors.SecondaryColor,
+                            color: AppColors.secondaryColor,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Dosis')),

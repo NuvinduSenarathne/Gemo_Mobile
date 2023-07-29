@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gemo_app/services/handle_validation.dart';
 
-Image logoWidget(String imageName) {
-  return Image.asset(
-    imageName,
-    fit: BoxFit.fitWidth,
-    width: 240,
-    height: 240,
-    color: Colors.white,
-  );
-}
-
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     TextEditingController controller) {
   return TextField(
@@ -72,6 +62,7 @@ TextFormField reusableTextFormField(String fieldName, String text,
         if (validationResult != "success") {
           return validationResult;
         }
+        return null;
       });
 }
 
@@ -79,10 +70,10 @@ TextFormField reusablePasswordFormField(
     String text,
     IconData icon,
     bool isPasswordType,
-    TextEditingController _passwordTextController,
-    TextEditingController _confirmPasswordTextController) {
+    TextEditingController passwordTextController,
+    TextEditingController confirmPasswordTextController) {
   return TextFormField(
-      controller: _confirmPasswordTextController,
+      controller: confirmPasswordTextController,
       obscureText: isPasswordType,
       enableSuggestions: !isPasswordType,
       autocorrect: !isPasswordType,
@@ -109,66 +100,10 @@ TextFormField reusablePasswordFormField(
         if (value!.isEmpty) {
           return "This field is required*";
         }
-        if (_passwordTextController.value !=
-            _confirmPasswordTextController.value) {
+        if (passwordTextController.value !=
+            confirmPasswordTextController.value) {
           return "Password mismatched.";
         }
+        return null;
       });
-}
-
-Container firebaseUIButton(BuildContext context, String title, Function onTap) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    height: 50,
-    margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-    decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
-    child: ElevatedButton(
-      onPressed: () {
-        onTap();
-      },
-      style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.pressed)) {
-              return Colors.black26;
-            }
-            return Colors.white;
-          }),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
-      child: Text(
-        title,
-        style: const TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
-      ),
-    ),
-  );
-}
-
-//Get Started Button
-Container getstartedButton(BuildContext context, String title, Function onTap) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    height: 50,
-    margin: const EdgeInsets.fromLTRB(15, 10, 15, 20),
-    decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
-    child: ElevatedButton(
-      onPressed: () {
-        onTap();
-      },
-      style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.pressed)) {
-              return Colors.black26;
-            }
-            return Colors.white;
-          }),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
-      child: Text(
-        title,
-        style: const TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
-      ),
-    ),
-  );
 }

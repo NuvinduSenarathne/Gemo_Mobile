@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
 import 'package:gemo_app/screens/signup.dart';
 import 'package:gemo_app/services/handle_popup.dart';
-import 'package:gemo_app/widgets/reusable_widget.dart';
-
+import 'package:gemo_app/widgets/textfields.dart';
 import '../services/mail_verification.dart';
+import '../widgets/buttons.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: AppColors.PrimaryColor,
+          backgroundColor: AppColors.primaryColor,
           body: Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -37,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       children: <Widget>[
                         const Text("Welcome Back",
                             style: TextStyle(
-                                color: AppColors.SecondaryColor,
+                                color: AppColors.secondaryColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30,
                                 fontFamily: 'VarelaRound')),
@@ -46,7 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         const Text("Login to your account",
                             style: TextStyle(
-                                color: AppColors.SecondaryColor, fontSize: 20)),
+                                color: AppColors.secondaryColor, fontSize: 20)),
                         const SizedBox(
                           height: 60,
                         ),
@@ -85,7 +85,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           children: [
                             const Text("Don't have account?",
                                 style:
-                                    TextStyle(color: AppColors.SecondaryColor)),
+                                    TextStyle(color: AppColors.secondaryColor)),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -97,7 +97,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               child: const Text(
                                 " Sign Up",
                                 style: TextStyle(
-                                    color: AppColors.SecondaryColor,
+                                    color: AppColors.secondaryColor,
                                     fontWeight: FontWeight.bold),
                               ),
                             )

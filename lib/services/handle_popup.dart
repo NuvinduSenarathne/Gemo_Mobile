@@ -9,7 +9,7 @@ class PopUpMessageService {
         context: context,
         text: errorMessage,
         type: QuickAlertType.error,
-        backgroundColor: AppColors.LightGreyColor,
+        backgroundColor: AppColors.lightGreyColor,
         title: title);
   }
 }

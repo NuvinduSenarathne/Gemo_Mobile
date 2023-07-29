@@ -26,7 +26,7 @@ class _MailVerificationScreenState extends State<MailVerificationScreen> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: AppColors.LightGreyColor,
+          backgroundColor: AppColors.lightGreyColor,
           body: Center(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 34.0),
@@ -48,7 +48,7 @@ class _MailVerificationScreenState extends State<MailVerificationScreen> {
                   style: TextStyle(
                     fontFamily: "Ubuntu",
                     fontWeight: FontWeight.bold,
-                    color: AppColors.PrimaryColor,
+                    color: AppColors.primaryColor,
                     fontSize: 22,
                   ),
                 ),
@@ -60,7 +60,7 @@ class _MailVerificationScreenState extends State<MailVerificationScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: "Ubuntu",
-                      color: AppColors.PrimaryColor,
+                      color: AppColors.primaryColor,
                       fontSize: 17),
                 ),
                 const SizedBox(
@@ -71,7 +71,7 @@ class _MailVerificationScreenState extends State<MailVerificationScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: "Ubuntu",
-                      color: AppColors.PrimaryColor,
+                      color: AppColors.primaryColor,
                       fontSize: 17),
                 ),
                 const SizedBox(
@@ -90,7 +90,7 @@ class _MailVerificationScreenState extends State<MailVerificationScreen> {
                     text: 'Resend E-Mail Link',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: AppColors.RichGreyColor,
+                      color: AppColors.richGreyColor,
                       fontSize: 18,
                     ),
                     recognizer: TapGestureRecognizer()
@@ -109,7 +109,7 @@ class _MailVerificationScreenState extends State<MailVerificationScreen> {
                     text: 'Back to Login',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: AppColors.RichGreyColor,
+                      color: AppColors.richGreyColor,
                       fontSize: 18,
                     ),
                     recognizer: TapGestureRecognizer()

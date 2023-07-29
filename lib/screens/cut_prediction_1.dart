@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gemo_app/constants/colors.dart';
 
 class CutPredictionScreen1 extends StatefulWidget {
-  CutPredictionScreen1({Key? key}) : super(key: key);
+  const CutPredictionScreen1({Key? key}) : super(key: key);
 
   @override
   State<CutPredictionScreen1> createState() => _CutPredictionScreen1State();
@@ -11,6 +10,6 @@ class CutPredictionScreen1 extends StatefulWidget {
 class _CutPredictionScreen1State extends State<CutPredictionScreen1> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return const MaterialApp();
   }
 }

@@ -3,9 +3,11 @@ import 'package:gemo_app/constants/colors.dart';
 import 'package:gemo_app/screens/mail_verification.dart';
 import 'package:gemo_app/screens/signin.dart';
 import 'package:gemo_app/services/handle_popup.dart';
-import 'package:gemo_app/widgets/reusable_widget.dart';
+import 'package:gemo_app/widgets/textfields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../widgets/buttons.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -30,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: AppColors.PrimaryColor,
+          backgroundColor: AppColors.primaryColor,
           body: Center(
             child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -41,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: <Widget>[
                         const Text("Register",
                             style: TextStyle(
-                                color: AppColors.SecondaryColor,
+                                color: AppColors.secondaryColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30,
                                 fontFamily: 'VarelaRound')),
@@ -50,7 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         const Text("Create your account",
                             style: TextStyle(
-                                color: AppColors.SecondaryColor, fontSize: 20)),
+                                color: AppColors.secondaryColor, fontSize: 20)),
                         const SizedBox(
                           height: 60,
                         ),
@@ -106,7 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           children: [
                             const Text("Already have an account?",
                                 style:
-                                    TextStyle(color: AppColors.SecondaryColor)),
+                                    TextStyle(color: AppColors.secondaryColor)),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -118,7 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: const Text(
                                 " Sign In",
                                 style: TextStyle(
-                                    color: AppColors.SecondaryColor,
+                                    color: AppColors.secondaryColor,
                                     fontWeight: FontWeight.bold),
                               ),
                             )
