@@ -20,7 +20,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return  Scaffold(
       appBar: AppBar(
             backgroundColor: AppColors.backgroundColor,
-            title: const Text('Dashboard'),
+            title:const Text("Dashboard"),
+             elevation: .1,
             leading: IconButton(
               icon: const Icon(Icons.abc),
               onPressed: (){},
