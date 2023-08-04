@@ -24,23 +24,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
              elevation: .1,
             leading: IconButton(
               icon: const Icon(Icons.abc),
-              onPressed: (){},
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () {
-                },
-              ),
-            ],
-          ),
-      body: Center(
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget> [
-            ElevatedButton(onPressed: () async {
-              dynamic result = await auth.signOut();
+              onPressed: (){
+                 dynamic result = auth.signOut();
 
               if (result == 'Success') {
                         ScaffoldMessenger.of(context)
@@ -57,7 +42,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           content: Text('Error signing out'),
                         ));
                       }
-            }, child: const Text('Sign Out'))
+              },
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                },
+              ),
+            ],
+          ),
+      body: const Center(
+        child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget> [
+            Text('Dashboard')
           ],
         ),
       )
