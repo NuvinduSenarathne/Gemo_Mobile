@@ -1,2 +1,1 @@
-# Gemo_Mobile
-Gemo Mobile Application
+# Gemo Flutter based Mobile Application
