@@ -42,6 +42,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   quickalert: ^1.0.1
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -66,8 +67,11 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-    # - assets\logos\logo.png
+  assets:
+    - assets/logos/logo.png
+    - assets/1.jpg
+    - assets/2.jpg
+    - assets/3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
