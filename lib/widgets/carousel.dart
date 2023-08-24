@@ -11,25 +11,27 @@ class ImageCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
-  items: imageUrls
-      .map((url) => Image.asset(url))
-      .toList(), 
+      items: imageUrls
+          .map((url) => Card(
+                elevation: 4,
+                child: Image.asset(url),
+              ))
+          .toList(),
       options: CarouselOptions(
-      height: 400,
-      aspectRatio: 16/9,
-      viewportFraction: 0.8,
-      initialPage: 0,
-      enableInfiniteScroll: true,
-      reverse: false,
-      autoPlay: true,
-      autoPlayInterval: Duration(seconds: 3),
-      autoPlayAnimationDuration: Duration(milliseconds: 800),
-      autoPlayCurve: Curves.fastOutSlowIn,
-      enlargeCenterPage: true,
-      enlargeFactor: 0.3,
-      scrollDirection: Axis.horizontal,
-   )
-  
-);
+        height: 400,
+        aspectRatio: 16/9,
+        viewportFraction: 0.8,
+        initialPage: 0,
+        enableInfiniteScroll: true,
+        reverse: false,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enlargeCenterPage: true,
+        enlargeFactor: 0.3,
+        scrollDirection: Axis.horizontal,
+      ),
+    );
   }
 }

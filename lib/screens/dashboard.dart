@@ -26,6 +26,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: AppColors.backgroundColor,
           title: const Text("Dashboard"),
@@ -59,7 +60,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           // color: AppColors.appColor,
           decoration: const BoxDecoration(
     gradient: LinearGradient(
-      colors: [ AppColors.whiteColor, Color.fromARGB(255, 57, 62, 109)],
+      // colors: [ AppColors.whiteColor, Color.fromARGB(255, 57, 62, 109)],
+      colors: [ AppColors.whiteColor, Color.fromARGB(255, 4, 65, 150)],
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       stops: [0.0, 1.0],
