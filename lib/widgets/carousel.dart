@@ -15,12 +15,20 @@ class ImageCarousel extends StatelessWidget {
       .map((url) => Image.asset(url))
       .toList(), 
       options: CarouselOptions(
-        
-      )
-    // 'autoplay': true,
-    // 'interval': 3000,
-    // 'aspectRatio': 1.5,
-    // 'padding': EdgeInsets.all(10),
+      height: 400,
+      aspectRatio: 16/9,
+      viewportFraction: 0.8,
+      initialPage: 0,
+      enableInfiniteScroll: true,
+      reverse: false,
+      autoPlay: true,
+      autoPlayInterval: Duration(seconds: 3),
+      autoPlayAnimationDuration: Duration(milliseconds: 800),
+      autoPlayCurve: Curves.fastOutSlowIn,
+      enlargeCenterPage: true,
+      enlargeFactor: 0.3,
+      scrollDirection: Axis.horizontal,
+   )
   
 );
   }

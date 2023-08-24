@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
-import 'package:gemo_app/screens/DashboardScreen.dart';
 import 'package:gemo_app/screens/signin.dart';
 import 'package:gemo_app/widgets/DashboardGrid.dart';
+import 'package:gemo_app/widgets/SearchBarDash.dart';
 import 'package:gemo_app/widgets/carousel.dart';
 
 import '../services/auth.dart';
 
 class DashboardScreen extends StatefulWidget {
   DashboardScreen({Key? key}) : super(key: key);
+  
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
+    
+  
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
   final AuthService auth = AuthService();
+  TextEditingController? searchController;
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +56,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
         body: Container(
+          // color: AppColors.appColor,
+          decoration: const BoxDecoration(
+    gradient: LinearGradient(
+      colors: [ AppColors.whiteColor, Color.fromARGB(255, 57, 62, 109)],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      stops: [0.0, 1.0],
+    ),
+  ),
           child:  Padding(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
             // mainAxisAlignment: MainAxisAlignment.center,
             child: Column(
               children:  <Widget>[
-                ImageCarousel(),
-              DashboardGrid(),
+                Padding(padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
+              child: SearchBarDash( onSearch: (String ) {  })),
+                Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                child: Container(
+                  child: ImageCarousel(),
+                ),),
+                Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                child: Container(
+                  child: DashboardGrid(),
+                ),),
+              
+              
 
               // ElevatedButton(
               //     onPressed: () {
