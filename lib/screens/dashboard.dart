@@ -9,19 +9,14 @@ import '../services/auth.dart';
 
 class DashboardScreen extends StatefulWidget {
   DashboardScreen({Key? key}) : super(key: key);
-  
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
-    
-  
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
   final AuthService auth = AuthService();
   TextEditingController? searchController;
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -59,41 +54,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
         body: Container(
           // color: AppColors.appColor,
           decoration: const BoxDecoration(
-    gradient: LinearGradient(
-      // colors: [ AppColors.whiteColor, Color.fromARGB(255, 57, 62, 109)],
-      colors: [ AppColors.whiteColor, Color.fromARGB(255, 4, 65, 150)],
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      stops: [0.0, 1.0],
-    ),
-  ),
-          child:  Padding(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            // mainAxisAlignment: MainAxisAlignment.center,
-            child: Column(
-              children:  <Widget>[
-                Padding(padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
-              child: SearchBarDash( onSearch: (String ) {  })),
-                Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
-                child: Container(
-                  child: ImageCarousel(),
-                ),),
-                Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
-                child: Container(
-                  child: DashboardGrid(),
-                ),),
-              
-              
-
-              // ElevatedButton(
-              //     onPressed: () {
-              //       Navigator.push(context, MaterialPageRoute(builder: (_)=> DashboardScreen1()));
-              //     },
-              //     child: const Text('Register'),
-              //   ),
-            ],
-            )
+            gradient: LinearGradient(
+              colors: [AppColors.whiteColor, Color.fromARGB(255, 4, 65, 150)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [0.0, 1.0],
+            ),
           ),
+          child: Padding(
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              // mainAxisAlignment: MainAxisAlignment.center,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
+                      child: SearchBarDash(onSearch: (String) {})),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                    child: Container(
+                      child: ImageCarousel(),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                    child: Container(
+                      child: DashboardGrid(),
+                    ),
+                  ),
+
+                  // ElevatedButton(
+                  //     onPressed: () {
+                  //       Navigator.push(context, MaterialPageRoute(builder: (_)=> DashboardScreen1()));
+                  //     },
+                  //     child: const Text('Register'),
+                  //   ),
+                ],
+              )),
         ));
   }
 }
