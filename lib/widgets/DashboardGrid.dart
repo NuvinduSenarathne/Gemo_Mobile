@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
 
 
+
 class DashboardGrid extends StatelessWidget {
-  const DashboardGrid({super.key});
+   DashboardGrid({super.key});
 
   final List<String> categories = const ['Color Detection', 'Cut Prediction', 'Recommendation', 'Price Prediction'];
+  final List<String> myRoute = [
+      "/colorDetection","/cutPrediction","/recommendation","/pricePrediction",
+    ];
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,10 @@ class DashboardGrid extends StatelessWidget {
         physics: const ScrollPhysics(),
         itemBuilder: (context, index) {
           return ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              print('Clicked ' + categories[index] + " " + myRoute[index]);
+               Navigator.of(context, rootNavigator: true).pushNamed(myRoute[index]);
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.dashboardGridButtonColor,
               shape: RoundedRectangleBorder(

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:gemo_app/screens/colorDetection.dart';
+import 'package:gemo_app/screens/cutPrediction.dart';
+import 'package:gemo_app/screens/dashboard.dart';
+import 'package:gemo_app/screens/pricePrediction.dart';
+import 'package:gemo_app/screens/recommendation.dart';
 import 'package:gemo_app/wrapper.dart';
 
 //Remove developer mode
@@ -15,9 +20,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gemo',
+      routes: {
+        "/pricePrediction": (context) => PricePrediction(),
+        "/cutPrediction": (context) => CutPrediction(),
+        "/recommendation": (context) => Recommendation(),
+        "/colorDetection": (context) => ColorDetection(),
+      },
       home: Wrapper(),
     );
   }
