@@ -20,7 +20,7 @@ class DashboardGrid extends StatelessWidget {
         itemBuilder: (context, index) {
           return ElevatedButton(
             onPressed: () {
-              print('Clicked ' + categories[index] + " " + myRoute[index]);
+              // print('Clicked ' + categories[index]);
                Navigator.of(context, rootNavigator: true).pushNamed(myRoute[index]);
             },
             style: ElevatedButton.styleFrom(
