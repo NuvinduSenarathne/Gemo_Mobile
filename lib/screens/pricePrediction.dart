@@ -52,183 +52,216 @@ class _PricePredictionState extends State<PricePrediction> {
           ],
         ),
         body: Padding(
-          padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-          child: Column(
-            children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                child: Text(
-                  'Gemstone',
+            padding: const EdgeInsets.fromLTRB(10, 30, 10, 0),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: const Text(
+                    'Enter the characteristics of the gemstone',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                  ),
                 ),
-              ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(15.0),
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 158, 158, 158))),
-                child: DropdownButton(
-                  underline: Container(),
-                  isExpanded: true,
-                  value: selectedGemstone,
-                  items: gemstones
-                      .map((gemstone) => DropdownMenuItem(
-                          child: Text(gemstone), value: gemstone))
-                      .toList(),
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedGemstone = newValue!;
-                    });
-                  },
-                  style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
-                      decoration: TextDecoration.none),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                  child: const Icon(
+                    Icons.diamond_outlined,
+                    size: 40,
+                  ),
                 ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                child: Text(
-                  'Color',
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Gemstone',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
                 ),
-              ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(15.0),
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 158, 158, 158))),
-                child: DropdownButton(
-                  underline: Container(),
-                  isExpanded: true,
-                  value: selectedColor,
-                  items: colors
-                      .map((color) =>
-                          DropdownMenuItem(child: Text(color), value: color))
-                      .toList(),
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedColor = newValue!;
-                    });
-                  },
-                  style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
-                      decoration: TextDecoration.none),
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                child: Text(
-                  'Clarity',
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(15.0),
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 158, 158, 158))),
-                child: DropdownButton(
-                  underline: Container(),
-                  isExpanded: true,
-                  value: selectedClarity,
-                  items: clarities
-                      .map((clarity) => DropdownMenuItem(
-                          child: Text(clarity), value: clarity))
-                      .toList(),
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedClarity = newValue!;
-                    });
-                  },
-                  style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
-                      decoration: TextDecoration.none),
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                child: Text(
-                  'Cut',
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(15.0),
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 158, 158, 158))),
-                child: DropdownButton(
-                  underline: Container(),
-                  isExpanded: true,
-                  value: selectedCut,
-                  items: cuts
-                      .map((cut) =>
-                          DropdownMenuItem(child: Text(cut), value: cut))
-                      .toList(),
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedCut = newValue!;
-                    });
-                  },
-                  style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
-                      decoration: TextDecoration.none),
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                child: Text(
-                  'Weight (ct)',
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(15.0),
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 158, 158, 158))),
-                child: TextField(
-                  controller: selectedCt,
-                  style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
-                      decoration: TextDecoration.none),
-                ),
-              ),
-              Container(
+                Container(
                   width: double.infinity,
-                  height: double.tryParse('50'),
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Process'),
-                  )),
-            ],
-          ),
-        ));
+                  margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: AppColors.formFieldBorderColor,
+                      )),
+                  child: DropdownButton(
+                    underline: Container(),
+                    isExpanded: true,
+                    value: selectedGemstone,
+                    items: gemstones
+                        .map((gemstone) => DropdownMenuItem(
+                            child: Text(gemstone), value: gemstone))
+                        .toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedGemstone = newValue!;
+                      });
+                    },
+                    style: const TextStyle(
+                        color: AppColors.formFieldTextColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.none),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Color',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: AppColors.formFieldBorderColor,
+                      )),
+                  child: DropdownButton(
+                    underline: Container(),
+                    isExpanded: true,
+                    value: selectedColor,
+                    items: colors
+                        .map((color) =>
+                            DropdownMenuItem(child: Text(color), value: color))
+                        .toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedColor = newValue!;
+                      });
+                    },
+                    style: const TextStyle(
+                        color: AppColors.formFieldTextColor,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        decoration: TextDecoration.none),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Clarity',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: AppColors.formFieldBorderColor,
+                      )),
+                  child: DropdownButton(
+                    underline: Container(),
+                    isExpanded: true,
+                    value: selectedClarity,
+                    items: clarities
+                        .map((clarity) => DropdownMenuItem(
+                            child: Text(clarity), value: clarity))
+                        .toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedClarity = newValue!;
+                      });
+                    },
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.formFieldTextColor,
+                        fontSize: 20,
+                        decoration: TextDecoration.none),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Cut',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: AppColors.formFieldBorderColor,
+                      )),
+                  child: DropdownButton(
+                    underline: Container(),
+                    isExpanded: true,
+                    value: selectedCut,
+                    items: cuts
+                        .map((cut) =>
+                            DropdownMenuItem(child: Text(cut), value: cut))
+                        .toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedCut = newValue!;
+                      });
+                    },
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.formFieldTextColor,
+                        fontSize: 20,
+                        decoration: TextDecoration.none),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Weight (ct)',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: AppColors.formFieldBorderColor,
+                      )),
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      hintText: 'Carat Weight',
+                      border: InputBorder.none,
+                    ),
+                    controller: selectedCt,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.formFieldTextColor,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                Container(
+                    margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    width: double.infinity,
+                    height: double.tryParse('50'),
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Process'),
+                    )),
+              ],
+            )));
   }
 }
