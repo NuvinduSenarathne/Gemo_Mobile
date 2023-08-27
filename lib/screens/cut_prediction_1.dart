@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gemo_app/constants/colors.dart';
 
 class CutPredictionScreen1 extends StatefulWidget {
   CutPredictionScreen1({Key? key}) : super(key: key);

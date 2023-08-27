@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:gemo_app/screens/pricePredictionResult.dart';
 
