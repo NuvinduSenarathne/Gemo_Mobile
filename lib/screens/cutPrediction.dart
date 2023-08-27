@@ -2,7 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
 import 'package:gemo_app/screens/cp.dart';
-import 'package:gemo_app/screens/galleryApp.dart';
 
 import 'cameraApp.dart';
 
@@ -40,10 +39,8 @@ class CutPrediction extends StatelessWidget {
                 subtitle: Text('Upload photos from gallery'),
                 trailing: Icon(Icons.navigate_next_outlined),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => CutPrediction1()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => CutPrediction1()));
                   print('clicked files');
                 },
               ),

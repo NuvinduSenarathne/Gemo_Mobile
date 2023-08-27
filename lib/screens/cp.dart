@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 
 import '../constants/colors.dart';
 import 'previewPage.dart';
@@ -24,7 +22,6 @@ class _CutPrediction1State extends State<CutPrediction1> {
     if (pickedImage != null) {
       setState(() {
         _selectedImage = pickedImage;
-        
       });
     }
   }
@@ -51,7 +48,6 @@ class _CutPrediction1State extends State<CutPrediction1> {
             ElevatedButton(
               onPressed: _pickImage,
               child: Text('Select Image'),
-              
             ),
             if (_selectedImage != null)
               ElevatedButton(
