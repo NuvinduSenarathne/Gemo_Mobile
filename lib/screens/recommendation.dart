@@ -13,12 +13,7 @@ class Recommendation extends StatefulWidget {
 class _RecommendationState extends State<Recommendation> {
   final List<String> requirements = [
     'Gemstone Information',
-    'Information',
-    'Gems for Jewellery',
-    'Healing Gemstones',
-    'Navaratne Gemstones',
-    'Gift Gemstones',
-    'Sinhala Names',
+    'Recommend a Gemstone',
   ];
 
   String selectedRequirement = 'Gemstone Information';

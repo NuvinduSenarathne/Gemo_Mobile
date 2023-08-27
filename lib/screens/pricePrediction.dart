@@ -12,14 +12,25 @@ class PricePrediction extends StatefulWidget {
 
 class _PricePredictionState extends State<PricePrediction> {
   final List<String> gemstones = [
-    'Gem 1',
-    'Gem 2',
-    'Gem 3',
+    'Sapphire',
+    'Ruby',
+    'Topaz',
+    'Spinel',
+    "Cat's Eye",
+    'Zircon',
+    'Alexandrite',
   ];
 
   final List<String> colors = [
-    'Color 1',
-    'Color 2',
+    'Purple',
+    'Yellow',
+    'White',
+    'Red',
+    'Blue',
+    'Brown', 
+    'Gold', 
+    'Green', 
+    'Pink',
   ];
   final List<String> clarities = [
     'Transparent',
@@ -28,10 +39,12 @@ class _PricePredictionState extends State<PricePrediction> {
   final List<String> cuts = [
     'Oval',
     'Round',
+    'Emerald',
+    'Heart',
   ];
 
-  String selectedGemstone = 'Gem 1';
-  String selectedColor = 'Color 1';
+  String selectedGemstone = 'Sapphire';
+  String selectedColor = 'Blue';
   String selectedClarity = 'Transparent';
   String selectedCut = 'Oval';
   TextEditingController selectedCt = TextEditingController();
