@@ -71,22 +71,19 @@ class _RecommendationResultState extends State<RecommendationResult> {
                     width: double.infinity,
                     height: double.tryParse('50'),
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            AppColors.dashboardGridButtonColor),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => RecommendationResult()));
-                      },
-                      child: const Text(
-                        'Process',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    )),
+                    child: Container(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Center(
+                    child: const Text(
+                    'Gemstone Recommendation',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
+                  ),
+                  )
+                ),
+                    ),
+                    ListView(
+                      
+                    )
               ],
             )));
   }
