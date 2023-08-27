@@ -56,6 +56,13 @@ class _PricePredictionState extends State<PricePrediction> {
           child: Column(
             children: [
               Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: Text(
+                  'Gemstone',
+                ),
+              ),
+              Container(
                 width: double.infinity,
                 margin: const EdgeInsets.all(15.0),
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -65,6 +72,7 @@ class _PricePredictionState extends State<PricePrediction> {
                     border: Border.all(
                         color: const Color.fromARGB(255, 158, 158, 158))),
                 child: DropdownButton(
+                  underline: Container(),
                   isExpanded: true,
                   value: selectedGemstone,
                   items: gemstones
@@ -83,6 +91,13 @@ class _PricePredictionState extends State<PricePrediction> {
                 ),
               ),
               Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: Text(
+                  'Color',
+                ),
+              ),
+              Container(
                 width: double.infinity,
                 margin: const EdgeInsets.all(15.0),
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -92,6 +107,7 @@ class _PricePredictionState extends State<PricePrediction> {
                     border: Border.all(
                         color: const Color.fromARGB(255, 158, 158, 158))),
                 child: DropdownButton(
+                  underline: Container(),
                   isExpanded: true,
                   value: selectedColor,
                   items: colors
@@ -119,11 +135,12 @@ class _PricePredictionState extends State<PricePrediction> {
                     border: Border.all(
                         color: const Color.fromARGB(255, 158, 158, 158))),
                 child: DropdownButton(
+                  underline: Container(),
                   isExpanded: true,
                   value: selectedClarity,
                   items: clarities
-                      .map((clarity) =>
-                          DropdownMenuItem(child: Text(clarity), value: clarity))
+                      .map((clarity) => DropdownMenuItem(
+                          child: Text(clarity), value: clarity))
                       .toList(),
                   onChanged: (newValue) {
                     setState(() {
@@ -146,6 +163,7 @@ class _PricePredictionState extends State<PricePrediction> {
                     border: Border.all(
                         color: const Color.fromARGB(255, 158, 158, 158))),
                 child: DropdownButton(
+                  underline: Container(),
                   isExpanded: true,
                   value: selectedCut,
                   items: cuts
@@ -173,13 +191,21 @@ class _PricePredictionState extends State<PricePrediction> {
                     border: Border.all(
                         color: const Color.fromARGB(255, 158, 158, 158))),
                 child: TextField(
-                  controller:selectedCt,
+                  controller: selectedCt,
                   style: const TextStyle(
                       color: Colors.blue,
                       fontSize: 20,
                       decoration: TextDecoration.none),
                 ),
               ),
+              Container(
+                  width: double.infinity,
+                  height: double.tryParse('50'),
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Process'),
+                  )),
             ],
           ),
         ));
