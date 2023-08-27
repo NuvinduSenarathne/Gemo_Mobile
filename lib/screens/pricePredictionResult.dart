@@ -34,7 +34,7 @@ class _PricePredictionResultState extends State<PricePredictionResult> {
               width: 297,
               height: 73,
               decoration: BoxDecoration(
-                color: Color(0xff009bbc),
+                color: AppColors.dashboardGridButtonColor,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Center(
