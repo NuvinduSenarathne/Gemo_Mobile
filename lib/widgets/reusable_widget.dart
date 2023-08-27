@@ -72,6 +72,7 @@ TextFormField reusableTextFormField(String fieldName, String text,
         if (validationResult != "success") {
           return validationResult;
         }
+        return null;
       });
 }
 
@@ -113,6 +114,7 @@ TextFormField reusablePasswordFormField(
             _confirmPasswordTextController.value) {
           return "Password mismatched.";
         }
+        return null;
       });
 }
 
