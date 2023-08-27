@@ -21,6 +21,7 @@ class RecommendationTile extends StatelessWidget {
             width: 150,
             child: Image.network(image),
           ),
+          
           const SizedBox(width: 10.0),
           Expanded(
             child: Column(
@@ -39,6 +40,7 @@ class RecommendationTile extends StatelessWidget {
                     fontSize: 16.0,
                   ),
                 ),
+                
               ],
             ),
           ),

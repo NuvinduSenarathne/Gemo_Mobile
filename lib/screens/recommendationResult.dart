@@ -82,6 +82,10 @@ class _RecommendationResultState extends State<RecommendationResult> {
                         ),
                       )),
                 ),
+                Divider(
+                  height: 1,
+                  color: Colors.grey,
+                ),
                 RecommendationTile(
                   topic: "Ruby",
                   image: "https://df2sm3urulav.cloudfront.net/tenants/gr/uploads/content/4wmnqlctgu0f3c9a.jpg",
