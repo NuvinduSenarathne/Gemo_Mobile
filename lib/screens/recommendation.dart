@@ -107,7 +107,12 @@ class _RecommendationState extends State<Recommendation> {
                       minLines: 6,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
+                      decoration: const InputDecoration(
+                      hintText: 'Enter your requirement here...',
+                      border: InputBorder.none,
+                    ),
                     )),
+
                 Container(
                     margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                     width: double.infinity,
