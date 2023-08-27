@@ -126,6 +126,13 @@ class _PricePredictionState extends State<PricePrediction> {
                 ),
               ),
               Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: Text(
+                  'Clarity',
+                ),
+              ),
+              Container(
                 width: double.infinity,
                 margin: const EdgeInsets.all(15.0),
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -154,6 +161,13 @@ class _PricePredictionState extends State<PricePrediction> {
                 ),
               ),
               Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: Text(
+                  'Cut',
+                ),
+              ),
+              Container(
                 width: double.infinity,
                 margin: const EdgeInsets.all(15.0),
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -179,6 +193,13 @@ class _PricePredictionState extends State<PricePrediction> {
                       color: Colors.blue,
                       fontSize: 20,
                       decoration: TextDecoration.none),
+                ),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: Text(
+                  'Weight (ct)',
                 ),
               ),
               Container(
