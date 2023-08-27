@@ -2,6 +2,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
+import '../constants/colors.dart';
+
 class PreviewPage extends StatelessWidget {
   const PreviewPage({Key? key, required this.picture}) : super(key: key);
 
@@ -10,7 +12,11 @@ class PreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Preview Page')),
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          backgroundColor: AppColors.backgroundColor,
+          title: const Text("Preview Page"),
+        ),
       body: Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Image.file(File(picture.path), fit: BoxFit.cover, width: 250),
