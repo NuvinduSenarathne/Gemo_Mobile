@@ -9,144 +9,85 @@ class RecommendationResult extends StatefulWidget {
 }
 
 class _RecommendationResultState extends State<RecommendationResult> {
+  late String selectedCategory = 'Selected Category';
+  late String selectedRequirement = 'Selected Requirement';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
-        title: const Text("Results"),
-      ),
-      body: Container(
-        // signinshowpasswordeF9 (1:7)
-        padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-        width: double.infinity,
-        decoration: const BoxDecoration(
-            // color: Color(0xff1d2671),
-            ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              // pricet9V (1:56)
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
-              width: 297,
-              height: 73,
-              decoration: BoxDecoration(
-                color: AppColors.dashboardGridButtonColor,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Center(
-                child: Text(
-                  'Rs. 85250',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w500,
-                    height: 1.2175,
-                    color: Color(0xffffffff),
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                  child: Column(
-                    children: [
-                      Container(
-                        // margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        child: const Text(
-                          'Blue',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w500,
-                            height: 1.2175,
-                            color: Color(0xff333333),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        // margin: EdgeInsets.fromLTRB(0, 0, 83, 0),
-                        child: const Text(
-                          'Color',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            height: 1.2175,
-                            color: Color(0xff635e5e),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Center(
-                  child: Column(
-                    children: [
-                      Container(
-                        // transparent2oR (1:61)
-                        // margin: EdgeInsets.fromLTRB(0, 0, 42, 0),
-                        child: const Text(
-                          'Transparent',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w500,
-                            height: 1.2175,
-                            color: Color(0xff333333),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        // margin: EdgeInsets.fromLTRB(0, 0, 64, 0),
-                        child: const Text(
-                          'Clarity',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            height: 1.2175,
-                            color: Color(0xff645e5e),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                  child: Column(
-                    children: [
-                      Text(
-                        // Lp7 (1:62)
-                        '2.4',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w500,
-                          height: 1.2175,
-                          color: Color(0xff333333),
-                        ),
-                      ),
-                      Text(
-                        // weightctY31 (1:64)
-                        'Weight (ct)',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          height: 1.2175,
-                          color: Color(0xff645e5e),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ],
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          backgroundColor: AppColors.backgroundColor,
+          title: const Text("Results"),
         ),
-      ),
-    );
+        body: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 30, 10, 0),
+            child: Column(
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Category',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Text(
+                    selectedCategory,
+                    style: const TextStyle(
+                        color: AppColors.formFieldTextColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.none
+                        ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Requirement',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Text(
+                      selectedRequirement,
+                      style: const TextStyle(
+                          color: AppColors.formFieldTextColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          decoration: TextDecoration.none),
+                    )),
+                Container(
+                    margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    width: double.infinity,
+                    height: double.tryParse('50'),
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            AppColors.dashboardGridButtonColor),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => RecommendationResult()));
+                      },
+                      child: const Text(
+                        'Process',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    )),
+              ],
+            )));
   }
 }

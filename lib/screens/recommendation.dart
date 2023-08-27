@@ -59,7 +59,7 @@ class _RecommendationState extends State<Recommendation> {
                   alignment: Alignment.centerLeft,
                   margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
                   child: const Text(
-                    'Requirement',
+                    'Category',
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ),
@@ -91,6 +91,14 @@ class _RecommendationState extends State<Recommendation> {
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
                         decoration: TextDecoration.none),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Requirement',
+                    style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ),
                 Container(
