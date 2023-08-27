@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:gemo_app/screens/pricePredictionResult.dart';
 
 import '../constants/colors.dart';
 
@@ -262,7 +263,10 @@ class _PricePredictionState extends State<PricePrediction> {
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(AppColors.dashboardGridButtonColor),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => PricePredictionResult()));
+                      },
                       child: const Text('Process', style: TextStyle(fontSize: 16),),
                     )),
               ],
