@@ -49,6 +49,15 @@ class _PricePredictionState extends State<PricePrediction> {
   String selectedCut = 'Oval';
   TextEditingController selectedCt = TextEditingController();
 
+  void printSelectedValues() {
+  print('Selected Gemstone: $selectedGemstone');
+  print('Selected Color: $selectedColor');
+  print('Selected Clarity: $selectedClarity');
+  print('Selected Cut: $selectedCut');
+  print('Selected Weight (ct): ${selectedCt.text}');
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,7 +114,8 @@ class _PricePredictionState extends State<PricePrediction> {
                     value: selectedGemstone,
                     items: gemstones
                         .map((gemstone) => DropdownMenuItem(
-                            child: Text(gemstone), value: gemstone))
+                            value: gemstone,
+                            child: Text(gemstone)))
                         .toList(),
                     onChanged: (newValue) {
                       setState(() {
@@ -143,7 +153,7 @@ class _PricePredictionState extends State<PricePrediction> {
                     value: selectedColor,
                     items: colors
                         .map((color) =>
-                            DropdownMenuItem(child: Text(color), value: color))
+                            DropdownMenuItem(value: color, child: Text(color)))
                         .toList(),
                     onChanged: (newValue) {
                       setState(() {
@@ -181,7 +191,8 @@ class _PricePredictionState extends State<PricePrediction> {
                     value: selectedClarity,
                     items: clarities
                         .map((clarity) => DropdownMenuItem(
-                            child: Text(clarity), value: clarity))
+                            value: clarity,
+                            child: Text(clarity)))
                         .toList(),
                     onChanged: (newValue) {
                       setState(() {
@@ -219,7 +230,7 @@ class _PricePredictionState extends State<PricePrediction> {
                     value: selectedCut,
                     items: cuts
                         .map((cut) =>
-                            DropdownMenuItem(child: Text(cut), value: cut))
+                            DropdownMenuItem(value: cut, child: Text(cut)))
                         .toList(),
                     onChanged: (newValue) {
                       setState(() {
@@ -275,8 +286,9 @@ class _PricePredictionState extends State<PricePrediction> {
                         backgroundColor: MaterialStateProperty.all(AppColors.dashboardGridButtonColor),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => PricePredictionResult()));
+                        printSelectedValues();
+                    //     Navigator.push(
+                    // context, MaterialPageRoute(builder: (_) => PricePredictionResult()));
                       },
                       child: const Text('Process', style: TextStyle(fontSize: 16),),
                     )),
