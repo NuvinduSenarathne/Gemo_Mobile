@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:gemo_app/screens/pricePredictionResult.dart';
+import 'package:http/http.dart' as http;
+
+// import 'package:gemo_app/screens/pricePredictionResult.dart';
 
 import '../constants/colors.dart';
 
@@ -27,9 +32,9 @@ class _PricePredictionState extends State<PricePrediction> {
     'White',
     'Red',
     'Blue',
-    'Brown', 
-    'Gold', 
-    'Green', 
+    'Brown',
+    'Gold',
+    'Green',
     'Pink',
   ];
   final List<String> clarities = [
@@ -48,15 +53,37 @@ class _PricePredictionState extends State<PricePrediction> {
   String selectedClarity = 'Transparent';
   String selectedCut = 'Oval';
   TextEditingController selectedCt = TextEditingController();
+  bool weightError = false;
 
-  void printSelectedValues() {
-  print('Selected Gemstone: $selectedGemstone');
-  print('Selected Color: $selectedColor');
-  print('Selected Clarity: $selectedClarity');
-  print('Selected Cut: $selectedCut');
-  print('Selected Weight (ct): ${selectedCt.text}');
-}
+  final now = DateTime.now();
 
+  Future<void> sendPredictionRequest(Map<String, dynamic> inputValues) async {
+    final url = Uri.parse('http://10.0.2.2:5001/predict');
+    final headers = {
+      'Content-Type': 'application/json', // Set the correct Content-Type header
+    };
+
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode(inputValues), // Encode the data as JSON
+    );
+
+    if (response.statusCode == 200) {
+      // print(response.body);
+      setState(() {
+        inputValues['Price'] = response.body;
+        print(inputValues);
+      });
+      // final responseData = json.decode(response.body);
+      // final predictedPrice = responseData['predicted_price'];
+      // Process the predicted price as needed
+      // print('Predicted Price: $predictedPrice');
+    } else {
+      print(
+          'Failed to send prediction request. Status code: ${response.statusCode}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,8 +141,7 @@ class _PricePredictionState extends State<PricePrediction> {
                     value: selectedGemstone,
                     items: gemstones
                         .map((gemstone) => DropdownMenuItem(
-                            value: gemstone,
-                            child: Text(gemstone)))
+                            value: gemstone, child: Text(gemstone)))
                         .toList(),
                     onChanged: (newValue) {
                       setState(() {
@@ -191,8 +217,7 @@ class _PricePredictionState extends State<PricePrediction> {
                     value: selectedClarity,
                     items: clarities
                         .map((clarity) => DropdownMenuItem(
-                            value: clarity,
-                            child: Text(clarity)))
+                            value: clarity, child: Text(clarity)))
                         .toList(),
                     onChanged: (newValue) {
                       setState(() {
@@ -260,37 +285,71 @@ class _PricePredictionState extends State<PricePrediction> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
-                        color: AppColors.formFieldBorderColor,
+                        color: weightError
+                            ? Colors.red // Use red border when there's an error
+                            : AppColors.formFieldBorderColor,
                       )),
                   child: TextField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: 'Carat Weight',
                       border: InputBorder.none,
+                      errorText: weightError ? 'Invalid input' : null,
                     ),
                     controller: selectedCt,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w400,
-                      color: AppColors.formFieldTextColor,
+                      color: weightError
+                          ? Colors.red
+                          : AppColors.formFieldTextColor,
                       fontSize: 20,
                     ),
                   ),
                 ),
                 Container(
-                  
                     margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                     width: double.infinity,
                     height: double.tryParse('50'),
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(AppColors.dashboardGridButtonColor),
+                        backgroundColor: MaterialStateProperty.all(
+                            AppColors.dashboardGridButtonColor),
                       ),
-                      onPressed: () {
-                        printSelectedValues();
-                    //     Navigator.push(
-                    // context, MaterialPageRoute(builder: (_) => PricePredictionResult()));
+                      onPressed: () async {
+                        if (double.tryParse(selectedCt.text) == null) {
+                          setState(() {
+                            weightError = true;
+                          });
+                        } else {
+                          setState(() {
+                            weightError = false;
+                          });
+                        }
+
+                        final inputValues = {
+                          'year': now.year,
+                          'month': now.month,
+                          'day': now.day,
+                          'GemstoneName': selectedGemstone,
+                          'Color': selectedColor,
+                          'Clarity': selectedClarity,
+                          'Cut': selectedCut,
+                          'Weight': double.parse(selectedCt.text),
+                        };
+                        await sendPredictionRequest(inputValues);
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) =>
+                                PricePredictionResult(inputValues: inputValues),
+                          ),
+                        );
                       },
-                      child: const Text('Process', style: TextStyle(fontSize: 16),),
+                      child: const Text(
+                        'Process',
+                        style: TextStyle(fontSize: 16),
+                      ),
                     )),
               ],
             )));
