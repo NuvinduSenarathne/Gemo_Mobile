@@ -10,6 +10,8 @@ class RecommendationResult extends StatefulWidget {
 }
 
 class _RecommendationResultState extends State<RecommendationResult> {
+  late String selectedCategory = 'Selected Category';
+  late String selectedRequirement = 'Selected Requirement';
   @override
   Widget build(BuildContext context) {
     return Container();
