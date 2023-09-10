@@ -115,7 +115,28 @@ class _RecommendationState extends State<Recommendation> {
                       border: InputBorder.none,
                     ),
                     )),
-                  
+
+                Container(
+                    margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    width: double.infinity,
+                    height: double.tryParse('50'),
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            AppColors.dashboardGridButtonColor),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => RecommendationResult()));
+                      },
+                      child: const Text(
+                        'Process',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    )),
               ],
             )));
   }
