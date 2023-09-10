@@ -88,6 +88,33 @@ class _RecommendationState extends State<Recommendation> {
                         decoration: TextDecoration.none),
                   ),
                 ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Requirement',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(
+                          color: AppColors.formFieldBorderColor,
+                        )),
+                    child: TextFormField(
+                      minLines: 6,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      decoration: const InputDecoration(
+                      hintText: 'Enter your requirement here...',
+                      border: InputBorder.none,
+                    ),
+                    )),
                   
               ],
             )));
