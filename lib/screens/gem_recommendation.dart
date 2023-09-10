@@ -58,6 +58,36 @@ class _RecommendationState extends State<Recommendation> {
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: AppColors.formFieldBorderColor,
+                      )),
+                  child: DropdownButton(
+                    underline: Container(),
+                    isExpanded: true,
+                    value: selectedRequirement,
+                    items: requirements
+                        .map((gemstone) => DropdownMenuItem(
+                            child: Text(gemstone), value: gemstone))
+                        .toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedRequirement = newValue!;
+                      });
+                    },
+                    style: const TextStyle(
+                        color: AppColors.formFieldTextColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.none),
+                  ),
+                ),
                   
               ],
             )));
