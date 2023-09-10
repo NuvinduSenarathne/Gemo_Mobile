@@ -50,7 +50,14 @@ class _RecommendationState extends State<Recommendation> {
                     size: 40,
                   ),
                 ),
-                
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: const Text(
+                    'Category',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
                   
               ],
             )));
