@@ -8,7 +8,8 @@ import 'cameraApp.dart';
 class ColorDetection extends StatelessWidget {
   const ColorDetection({super.key});
 
-  @override
+
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -60,4 +61,5 @@ class ColorDetection extends StatelessWidget {
           ],
         ));
   }
+  
 }

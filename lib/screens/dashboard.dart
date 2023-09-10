@@ -27,7 +27,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           title: const Text("Dashboard"),
           elevation: .1,
           leading: IconButton(
-            icon: const Icon(Icons.abc),
+            icon: const Icon(Icons.login),
             onPressed: () async {
               dynamic result = await auth.signOut();
 

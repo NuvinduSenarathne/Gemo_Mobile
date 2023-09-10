@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 
 class PricePredictionResult extends StatefulWidget {
-  const PricePredictionResult({super.key});
+  final Map<String, dynamic> inputValues;
+
+  const PricePredictionResult({Key? key, required this.inputValues})
+      : super(key: key);
 
   @override
   State<PricePredictionResult> createState() => _PricePredictionResultState();
@@ -15,6 +18,28 @@ class _PricePredictionResultState extends State<PricePredictionResult> {
   String selectedClarity = 'Transparent';
   String selectedCut = 'Oval';
   String selectedWeight = '0.56';
+  String predictedPrice = '5005.00';
+
+ @override
+  void initState() {
+    super.initState();
+    updateStateValues();
+  }
+
+  void updateStateValues() {
+    selectedGemstone = widget.inputValues['GemstoneName'];
+    selectedColor = widget.inputValues['Color'];
+    selectedClarity = widget.inputValues['Clarity'];
+    selectedCut = widget.inputValues['Cut'];
+    selectedWeight = widget.inputValues['Weight'].toString();
+    predictedPrice = widget.inputValues['Price'];
+  }
+
+  @override
+  void didUpdateWidget(covariant PricePredictionResult oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    updateStateValues();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +64,11 @@ class _PricePredictionResultState extends State<PricePredictionResult> {
                 color: AppColors.dashboardGridButtonColor,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
-                  'Rs. 85250',
+                  "Rs.$predictedPrice",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w500,
                     height: 1.2175,
@@ -125,6 +150,62 @@ class _PricePredictionResultState extends State<PricePredictionResult> {
                           fontWeight: FontWeight.w500,
                           height: 1.2175,
                           color: Color(0xff645e5e),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+              Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
+                  child: Column(
+                    children: [
+                      Text(
+                        selectedGemstone,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                          height: 1.2175,
+                          color: Color(0xff333333),
+                        ),
+                      ),
+                      const Text(
+                        'Gemstone Name',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          height: 1.2175,
+                          color: Color(0xff635e5e),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 60, 0),
+                  child: Column(
+                    children: [
+                      Text(
+                        selectedCut,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                          height: 1.2175,
+                          color: Color(0xff333333),
+                        ),
+                      ),
+                      const Text(
+                        'Cut',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          height: 1.2175,
+                          color: Color(0xff635e5e),
                         ),
                       ),
                     ],
