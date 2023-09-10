@@ -48,6 +48,10 @@ dependencies:
   image_picker: ^0.8.4+3
   http: ^0.13.3
 
+  
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -76,6 +80,7 @@ flutter:
     - assets/1.jpg
     - assets/2.jpg
     - assets/3.jpg
+    - assets/query-analysis.tflite
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
