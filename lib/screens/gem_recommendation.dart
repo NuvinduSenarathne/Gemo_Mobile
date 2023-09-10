@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gemo_app/screens/recommendationResult.dart';
+import 'package:gemo_app/screens/gem_recommendationResult.dart';
 
 import '../constants/colors.dart';
 
