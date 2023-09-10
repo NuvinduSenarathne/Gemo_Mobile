@@ -10,3 +10,8 @@ class Recommendation extends StatefulWidget {
   State<Recommendation> createState() => _RecommendationState();
 }
 
+class _RecommendationState extends State<Recommendation> {
+  final List<String> requirements = [
+    'Gemstone Information',
+    'Recommend a Gemstone',
+  ];
