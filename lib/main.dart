@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:gemo_app/screens/colorDetection.dart';
+import 'package:gemo_app/screens/colorClarityDetection.dart';
 import 'package:gemo_app/screens/cutPrediction.dart';
 import 'package:gemo_app/screens/pricePrediction.dart';
 import 'package:gemo_app/screens/gem_recommendation.dart';
