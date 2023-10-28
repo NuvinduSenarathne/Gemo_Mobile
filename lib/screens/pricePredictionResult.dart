@@ -57,6 +57,20 @@ class _PricePredictionResultState extends State<PricePredictionResult> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: const Text(
+                'Predicted Price of the Gemstone',
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+              child: const Icon(
+                Icons.diamond_outlined,
+                size: 40,
+              ),
+            ),
+            Container(
               margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
               width: 297,
               height: 73,
@@ -212,6 +226,20 @@ class _PricePredictionResultState extends State<PricePredictionResult> {
                   ),
                 )
               ],
+            ),
+
+            Container(
+              margin: const EdgeInsets.fromLTRB(05, 50, 05, 10),
+              child: const Center(
+                child: Text(
+                  "Predicted prices are based on current market conditions and various factors. Actual prices may vary due to market fluctuations, gemstone quality, and other factors.",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                  ),
+                  textAlign: TextAlign.center, // Set text alignment here
+                ),
+              ),
             ),
           ],
         ),

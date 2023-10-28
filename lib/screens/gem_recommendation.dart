@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:gemo_app/screens/gem_recommendationResults.dart';
 
 import '../constants/colors.dart';
+import 'package:http/http.dart' as http;
 
 class Recommendation extends StatefulWidget {
   const Recommendation({super.key});
@@ -11,12 +14,44 @@ class Recommendation extends StatefulWidget {
 }
 
 class _RecommendationState extends State<Recommendation> {
-  final List<String> requirements = [
-    'Gemstone Information',
-    'Recommend a Gemstone',
-  ];
+  // final List<String> requirements = [
+  //   'Gemstone Information',
+  //   'Recommend a Gemstone',
+  // ];
 
-  String selectedRequirement = 'Gemstone Information';
+  TextEditingController enteredRequirement = TextEditingController();
+  String recommendedGemstone = 'Sapphire';
+
+
+  Future<void> sendRecommendationRequest(String userInput) async {
+    final url = Uri.parse('http://10.0.2.2:5001/gemstonerecommendation');
+    final headers = {
+      'Content-Type': 'application/json', // Set the correct Content-Type header
+    };
+
+    final body = jsonEncode({'user_input': userInput});
+
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      final responseData = json.decode(response.body);
+      final recommendation = responseData['recommendation'];
+
+      setState(() {
+        recommendedGemstone = recommendation; // Update recommendedGemstone
+      });
+      // Process the gemstone recommendation as needed
+      print('Gemstone Recommendation: $recommendation');
+    } else {
+      print(
+          'Failed to send recommendation request. Status code: ${response.statusCode}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,44 +85,7 @@ class _RecommendationState extends State<Recommendation> {
                     size: 40,
                   ),
                 ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
-                  child: const Text(
-                    'Category',
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: AppColors.formFieldBorderColor,
-                      )),
-                  child: DropdownButton(
-                    underline: Container(),
-                    isExpanded: true,
-                    value: selectedRequirement,
-                    items: requirements
-                        .map((gemstone) => DropdownMenuItem(
-                            child: Text(gemstone), value: gemstone))
-                        .toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedRequirement = newValue!;
-                      });
-                    },
-                    style: const TextStyle(
-                        color: AppColors.formFieldTextColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        decoration: TextDecoration.none),
-                  ),
-                ),
+
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: const EdgeInsets.fromLTRB(14, 0, 0, 0),
@@ -107,6 +105,7 @@ class _RecommendationState extends State<Recommendation> {
                           color: AppColors.formFieldBorderColor,
                         )),
                     child: TextFormField(
+                      controller: enteredRequirement,
                       minLines: 6,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
@@ -126,11 +125,18 @@ class _RecommendationState extends State<Recommendation> {
                         backgroundColor: MaterialStateProperty.all(
                             AppColors.dashboardGridButtonColor),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
+
+                        final userInput = enteredRequirement.text; // Get the user's input from the controller
+                        print(userInput);
+                        await sendRecommendationRequest(userInput);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => RecommendationResult()));
+                                builder: (_) => RecommendationResult(
+                                  selectedRequirement: userInput,
+                                  recommendedGemstone: recommendedGemstone,
+                                )));
                       },
                       child: const Text(
                         'Process',

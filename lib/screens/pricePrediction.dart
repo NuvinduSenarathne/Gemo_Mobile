@@ -43,7 +43,7 @@ class _PricePredictionState extends State<PricePrediction> {
   ];
   final List<String> cuts = [
     'Oval',
-    'Round',
+    'Peer',
     'Emerald',
     'Heart',
   ];
@@ -58,7 +58,7 @@ class _PricePredictionState extends State<PricePrediction> {
   final now = DateTime.now();
 
   Future<void> sendPredictionRequest(Map<String, dynamic> inputValues) async {
-    final url = Uri.parse('http://10.0.2.2:5001/predict');
+    final url = Uri.parse('http://10.0.2.2:5001/priceprediction');
     final headers = {
       'Content-Type': 'application/json', // Set the correct Content-Type header
     };
@@ -70,15 +70,14 @@ class _PricePredictionState extends State<PricePrediction> {
     );
 
     if (response.statusCode == 200) {
-      // print(response.body);
-      setState(() {
-        inputValues['Price'] = response.body;
-        print(inputValues);
-      });
-      // final responseData = json.decode(response.body);
-      // final predictedPrice = responseData['predicted_price'];
+      print(response.body);
+      final responseData = json.decode(response.body);
+      final predictedPrice = responseData['predicted_price'];
       // Process the predicted price as needed
-      // print('Predicted Price: $predictedPrice');
+      print('Predicted Price: $predictedPrice');
+
+      // Set the predicted price in your inputValues map
+      inputValues['Price'] = predictedPrice.toString();
     } else {
       print(
           'Failed to send prediction request. Status code: ${response.statusCode}');
