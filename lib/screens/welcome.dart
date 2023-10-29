@@ -16,26 +16,46 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-            backgroundColor: AppColors.backgroundColor,
-            body: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      20, MediaQuery.of(context).size.height * 0.2, 20, 0),
-                  child: Column(
-                    children: <Widget>[
-                      getstartedButton(context, "Get Started", () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignInScreen()));
-                      }),
-                    ],
-                  ),
+          backgroundColor: AppColors.backgroundColor,
+          body: Stack(
+            alignment: Alignment.center,
+            children: [
+              Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    height: 400,
+                    child: Column(children: <Widget>[
+                      Image.asset(
+                        'assets/logos/logo.png',
+                        height: 200,
+                        width: 200,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const Text('To discover new era of gemstones',
+                          style: TextStyle(
+                              color: AppColors.whiteColor,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Dosis')),
+                    ]),
+                  )),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(
+                      0, 0, 0, MediaQuery.of(context).size.height * 0.15),
+                  child: getstartedButton(context, "Get Started >>", () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignInScreen()));
+                  }),
                 ),
               ),
-            )));
+            ],
+          ),
+        ));
   }
 }
