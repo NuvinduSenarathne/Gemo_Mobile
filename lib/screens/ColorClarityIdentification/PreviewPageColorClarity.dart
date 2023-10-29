@@ -14,7 +14,7 @@ class PreviewPageColorClarity extends StatelessWidget {
   final XFile picture;
 
   Future<Map<String, dynamic>?> processImageForColorClarity(File imageFile) async {
-    final Uri apiUrl = Uri.parse('http://10.0.2.2:5001/colorclarityidentification');
+    final Uri apiUrl = Uri.parse('http://ec2-3-110-25-16.ap-south-1.compute.amazonaws.com:5001/colorclarityidentification');
 
     try {
       final request = http.MultipartRequest('POST', apiUrl);

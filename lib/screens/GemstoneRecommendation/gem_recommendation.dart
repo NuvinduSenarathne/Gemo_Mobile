@@ -24,7 +24,7 @@ class _RecommendationState extends State<Recommendation> {
 
 
   Future<void> sendRecommendationRequest(String userInput) async {
-    final url = Uri.parse('http://10.0.2.2:5001/gemstonerecommendation');
+    final url = Uri.parse('http://ec2-3-110-25-16.ap-south-1.compute.amazonaws.com:5001/gemstonerecommendation');
     final headers = {
       'Content-Type': 'application/json', // Set the correct Content-Type header
     };

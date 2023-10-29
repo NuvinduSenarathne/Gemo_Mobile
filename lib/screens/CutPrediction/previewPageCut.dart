@@ -13,7 +13,7 @@ class PreviewPageCut extends StatelessWidget {
   final XFile picture;
 
   Future<String?> processImageForCut(File imageFile) async {
-    final Uri apiUrl = Uri.parse('http://10.0.2.2:5001/cutpredict');
+    final Uri apiUrl = Uri.parse('http://ec2-3-110-25-16.ap-south-1.compute.amazonaws.com:5001/cutpredict');
 
     try {
       final request = http.MultipartRequest('POST', apiUrl);

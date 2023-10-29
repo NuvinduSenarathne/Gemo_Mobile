@@ -58,7 +58,7 @@ class _PricePredictionState extends State<PricePrediction> {
   final now = DateTime.now();
 
   Future<void> sendPredictionRequest(Map<String, dynamic> inputValues) async {
-    final url = Uri.parse('http://10.0.2.2:5001/priceprediction');
+    final url = Uri.parse('http://ec2-3-110-25-16.ap-south-1.compute.amazonaws.com:5001/priceprediction');
     final headers = {
       'Content-Type': 'application/json', // Set the correct Content-Type header
     };
