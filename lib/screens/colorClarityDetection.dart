@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gemo_app/screens/colorClarityDetectionResult.dart';
 
 import '../constants/colors.dart';
+import 'ColorClarityPrediction1.dart';
 import 'cameraApp.dart';
 
 class ColorDetection extends StatelessWidget {
@@ -40,24 +41,13 @@ class ColorDetection extends StatelessWidget {
                 subtitle: Text('Upload photos from gallery'),
                 trailing: Icon(Icons.navigate_next_outlined),
                 onTap: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (_) => CutPrediction1()));
-                  // print('clicked files');
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => ColorClarityPredictionGallery()));
+                  print('clicked files');
                 },
               ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ColorDetectionResult(),
-                    ),
-                  );
-                },
-                child: Text('Preview Image'),
-              ),
+
           ],
         ));
   }

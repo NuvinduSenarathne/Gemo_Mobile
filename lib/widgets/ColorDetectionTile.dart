@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class ColorDetectionTile extends StatelessWidget {
   final String variety;
-  final String image;
   final String color;
   final String clarity;
 
   const ColorDetectionTile({
     required this.variety,
-    required this.image,
     required this.color,
     required this.clarity,
   }) : super();
@@ -19,10 +17,6 @@ class ColorDetectionTile extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Row(
         children: [
-          SizedBox(
-            width: 150,
-            child: Image.network(image),
-          ),
           
           const SizedBox(width: 10.0),
           Expanded(
@@ -32,7 +26,7 @@ class ColorDetectionTile extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                   child: Text(
-                  "$variety",
+                  "Gemstone Name : $variety",
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 20.0,
@@ -40,13 +34,13 @@ class ColorDetectionTile extends StatelessWidget {
                 ),
                 ),
                 Text(
-                  "Color: $color",
+                  "Color of the Gemstone: $color",
                   style: const TextStyle(
                     fontSize: 16.0,
                   ),
                 ),
                 Text(
-                  "Clarity: $clarity",
+                  "Clarity of the Gemstone: $clarity",
                   style: const TextStyle(
                     fontSize: 16.0,
                   ),

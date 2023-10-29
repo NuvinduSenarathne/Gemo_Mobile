@@ -1,18 +1,18 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:gemo_app/screens/previewPageCut.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../constants/colors.dart';
+import 'PreviewPageColorClarity.dart';
 import 'previewPage.dart';
 
-class CutPrediction1 extends StatefulWidget {
+class ColorClarityPredictionGallery extends StatefulWidget {
   @override
-  _CutPrediction1State createState() => _CutPrediction1State();
+  _ColorClarityPredictionGalleryState createState() => _ColorClarityPredictionGalleryState();
 }
 
-class _CutPrediction1State extends State<CutPrediction1> {
+class _ColorClarityPredictionGalleryState extends State<ColorClarityPredictionGallery> {
   XFile? _selectedImage;
 
   Future<void> _pickImage() async {
@@ -32,7 +32,7 @@ class _CutPrediction1State extends State<CutPrediction1> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: AppColors.backgroundColor,
-        title: const Text("Cut Prediction"),
+        title: const Text("Color Clarity Prediction"),
       ),
       body: Center(
         child: Column(
@@ -56,7 +56,7 @@ class _CutPrediction1State extends State<CutPrediction1> {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          PreviewPageCut(picture: _selectedImage!),
+                          PreviewPageColorClarity(picture: _selectedImage!),
                     ),
                   );
                 },

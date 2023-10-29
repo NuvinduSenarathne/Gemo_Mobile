@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gemo_app/screens/previewPage.dart';
 
+import 'PreviewPageColorClarity.dart';
+
 
 class CameraApp extends StatefulWidget {
   const CameraApp({Key? key, required this.cameras}) : super(key: key);
@@ -42,7 +44,7 @@ class _CameraAppState extends State<CameraApp> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => PreviewPage(
+              builder: (context) => PreviewPageColorClarity(
                     picture: picture,
                   )));
     } on CameraException catch (e) {
