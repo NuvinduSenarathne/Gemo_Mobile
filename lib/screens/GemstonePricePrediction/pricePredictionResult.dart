@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/colors.dart';
+import '../../constants/colors.dart';
 
 class PricePredictionResult extends StatefulWidget {
   final Map<String, dynamic> inputValues;

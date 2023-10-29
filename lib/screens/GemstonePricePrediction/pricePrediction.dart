@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:gemo_app/screens/pricePredictionResult.dart';
+import 'package:gemo_app/screens/GemstonePricePrediction/pricePredictionResult.dart';
 import 'package:http/http.dart' as http;
 
 // import 'package:gemo_app/screens/pricePredictionResult.dart';
 
-import '../constants/colors.dart';
+import '../../constants/colors.dart';
 
 class PricePrediction extends StatefulWidget {
   const PricePrediction({super.key});

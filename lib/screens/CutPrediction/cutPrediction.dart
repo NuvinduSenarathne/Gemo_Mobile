@@ -1,10 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
-import 'package:gemo_app/screens/cameraAppCut.dart';
-import 'package:gemo_app/screens/cp.dart';
+import 'package:gemo_app/screens/CutPrediction/cameraAppCut.dart';
+import 'package:gemo_app/screens/CutPrediction/cp.dart';
 
-import 'cameraApp.dart';
+import '../ColorClarityIdentification/cameraApp.dart';
 
 class CutPrediction extends StatelessWidget {
   const CutPrediction({super.key});

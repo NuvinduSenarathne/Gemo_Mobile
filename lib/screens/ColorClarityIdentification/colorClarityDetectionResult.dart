@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gemo_app/widgets/ColorDetectionTile.dart';
-import '../constants/colors.dart';
+import '../../constants/colors.dart';
 
 class ColorDetectionResult extends StatelessWidget {
   final String color;

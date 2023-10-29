@@ -2,7 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gemo_app/screens/previewPage.dart';
-import 'package:gemo_app/screens/previewPageCut.dart';
+import 'package:gemo_app/screens/CutPrediction/previewPageCut.dart';
 
 
 class CameraAppCut extends StatefulWidget {

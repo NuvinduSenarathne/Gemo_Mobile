@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../constants/colors.dart';
+import '../../constants/colors.dart';
 import 'PreviewPageColorClarity.dart';
-import 'previewPage.dart';
+import '../previewPage.dart';
 
 class ColorClarityPredictionGallery extends StatefulWidget {
   @override

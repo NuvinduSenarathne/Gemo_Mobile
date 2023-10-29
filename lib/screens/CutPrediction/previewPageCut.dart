@@ -1,11 +1,11 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:gemo_app/screens/cutPredictionResult.dart';
+import 'package:gemo_app/screens/CutPrediction/cutPredictionResult.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../constants/colors.dart';
+import '../../constants/colors.dart';
 
 class PreviewPageCut extends StatelessWidget {
   const PreviewPageCut({Key? key, required this.picture}) : super(key: key);

@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:gemo_app/screens/previewPageCut.dart';
+import 'package:gemo_app/screens/CutPrediction/previewPageCut.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../constants/colors.dart';
-import 'previewPage.dart';
+import '../../constants/colors.dart';
+import '../previewPage.dart';
 
 class CutPrediction1 extends StatefulWidget {
   @override
