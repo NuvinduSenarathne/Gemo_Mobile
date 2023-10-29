@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:gemo_app/screens/previewPageCut.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../constants/colors.dart';
@@ -56,7 +57,7 @@ class _CutPrediction1State extends State<CutPrediction1> {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          PreviewPage(picture: _selectedImage!),
+                          PreviewPageCut(picture: _selectedImage!),
                     ),
                   );
                 },

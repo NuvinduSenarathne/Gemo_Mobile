@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
+import 'package:gemo_app/screens/cameraAppCut.dart';
 import 'package:gemo_app/screens/cp.dart';
 
 import 'cameraApp.dart';
@@ -28,7 +29,7 @@ class CutPrediction extends StatelessWidget {
                   await availableCameras().then((value) => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => CameraApp(cameras: value))));
+                          builder: (_) => CameraAppCut(cameras: value))));
                 },
               ),
             ),

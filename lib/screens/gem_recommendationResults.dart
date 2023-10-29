@@ -81,19 +81,25 @@ class _RecommendationResultState extends State<RecommendationResult> {
                       )),
                 ),
                 Container(
-                  margin: const EdgeInsets.fromLTRB(0, 00, 0, 0),
-                  width: double.infinity,
-                  height: double.tryParse('50'),
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child:  Center(
-                        child: Text(
-                          widget.recommendedGemstone,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 32),
-                        ),
-                      )),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+                  width: 297,
+                  height: 73,
+                  decoration: BoxDecoration(
+                    color: AppColors.dashboardGridButtonColor,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: Text(
+                      widget.recommendedGemstone,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w500,
+                        height: 1.2175,
+                        color: Color(0xffffffff),
+                      ),
+                    ),
+                  ),
                 ),
 
               ],

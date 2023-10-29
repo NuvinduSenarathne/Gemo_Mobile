@@ -21,7 +21,20 @@ class PreviewPage extends StatelessWidget {
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Image.file(File(picture.path), fit: BoxFit.cover, width: 250),
           const SizedBox(height: 24),
-          Text(picture.name)
+          Text(picture.name),
+
+          ElevatedButton(
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) =>
+              //         ColorDetectionResult(),
+              //   ),
+              // );
+            },
+            child: const Text('Process Color Clarity'),
+          ),
         ]),
       ),
     );
