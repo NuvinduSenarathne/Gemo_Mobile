@@ -1,6 +1,5 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:gemo_app/screens/CutPrediction/cutPredictionResult.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -8,10 +7,17 @@ import 'dart:convert';
 import '../../constants/colors.dart';
 import 'colorClarityDetectionResult.dart';
 
-class PreviewPageColorClarity extends StatelessWidget {
+class PreviewPageColorClarity extends StatefulWidget {
   const PreviewPageColorClarity({Key? key, required this.picture}) : super(key: key);
 
   final XFile picture;
+
+  @override
+  _PreviewPageColorClarityState createState() => _PreviewPageColorClarityState();
+}
+
+class _PreviewPageColorClarityState extends State<PreviewPageColorClarity> {
+  bool isLoading = false; // Variable to track loading state
 
   Future<Map<String, dynamic>?> processImageForColorClarity(File imageFile) async {
     final Uri apiUrl = Uri.parse('http://ec2-3-110-25-16.ap-south-1.compute.amazonaws.com:5001/colorclarityidentification');
@@ -51,14 +57,38 @@ class PreviewPageColorClarity extends StatelessWidget {
       ),
       body: Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Image.file(File(picture.path), fit: BoxFit.cover, width: 250),
+          Image.file(File(widget.picture.path), fit: BoxFit.cover, width: 250),
           const SizedBox(height: 24),
-          Text(picture.name),
+          Text(widget.picture.name),
 
           ElevatedButton(
             onPressed: () async {
-              final File imageFile = File(picture.path);
-              final response = await processImageForColorClarity(imageFile);
+              final File imageFile = File(widget.picture.path);
+              Map<String, dynamic>? response;
+
+              try {
+                // Show loading indicator using showDialog
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CircularProgressIndicator(),
+                          const SizedBox(height: 16),
+                          Text('Processing Color and Clarity...'),
+                        ],
+                      ),
+                    );
+                  },
+                );
+
+                response = await processImageForColorClarity(imageFile);
+              } finally {
+                // Close the loading indicator dialog no matter what happens
+                Navigator.of(context).pop();
+              }
 
               if (response != null) {
                 // Now you have the response, you can access clarity, color, and variety
@@ -73,13 +103,11 @@ class PreviewPageColorClarity extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        ColorDetectionResult(
-                          clarity: clarity,
-                          color: color,
-                          variety: variety
-
-                        ),
+                    builder: (context) => ColorDetectionResult(
+                      clarity: clarity,
+                      color: color,
+                      variety: variety,
+                    ),
                   ),
                 );
               } else {
@@ -92,7 +120,9 @@ class PreviewPageColorClarity extends StatelessWidget {
                 );
               }
             },
-            child: const Text('Process Color and Clarity'),
+            child: isLoading
+                ? CircularProgressIndicator() // Show CircularProgressIndicator while loading
+                : const Text('Process Color and Clarity'),
           ),
         ]),
       ),

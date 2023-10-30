@@ -62,7 +62,28 @@ class PreviewPageCut extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               final File imageFile = File(picture.path);
+
+              // Show loading indicator
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircularProgressIndicator(),
+                        const SizedBox(height: 16),
+                        Text('Processing Cut...'),
+                      ],
+                    ),
+                  );
+                },
+              );
+
               final predictedCut = await processImageForCut(imageFile);
+
+              // Close the loading indicator dialog
+              Navigator.of(context).pop();
 
               if (predictedCut != null) {
                 // Now you have the predictedCut, you can navigate to the result page or perform other actions

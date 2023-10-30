@@ -14,16 +14,15 @@ class Recommendation extends StatefulWidget {
 }
 
 class _RecommendationState extends State<Recommendation> {
-  // final List<String> requirements = [
-  //   'Gemstone Information',
-  //   'Recommend a Gemstone',
-  // ];
-
   TextEditingController enteredRequirement = TextEditingController();
   String recommendedGemstone = 'Sapphire';
-
+  bool isLoading = false; // Variable to track loading state
 
   Future<void> sendRecommendationRequest(String userInput) async {
+    setState(() {
+      isLoading = true; // Set isLoading to true to show the indicator
+    });
+
     final url = Uri.parse('http://ec2-3-110-25-16.ap-south-1.compute.amazonaws.com:5001/gemstonerecommendation');
     final headers = {
       'Content-Type': 'application/json', // Set the correct Content-Type header
@@ -36,6 +35,10 @@ class _RecommendationState extends State<Recommendation> {
       headers: headers,
       body: body,
     );
+
+    setState(() {
+      isLoading = false; // No matter what happens, set isLoading to false
+    });
 
     if (response.statusCode == 200) {
       print(response.body);
@@ -74,7 +77,7 @@ class _RecommendationState extends State<Recommendation> {
                 Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                   child: const Text(
-                    'Enter the your requirements',
+                    'Enter your requirements',
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                   ),
                 ),
@@ -95,55 +98,64 @@ class _RecommendationState extends State<Recommendation> {
                   ),
                 ),
                 Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(
-                          color: AppColors.formFieldBorderColor,
-                        )),
-                    child: TextFormField(
-                      controller: enteredRequirement,
-                      minLines: 6,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: null,
-                      decoration: const InputDecoration(
+                  width: double.infinity,
+                  margin: const EdgeInsets.fromLTRB(15, 8, 15, 15),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: AppColors.formFieldBorderColor,
+                    ),
+                  ),
+                  child: TextFormField(
+                    controller: enteredRequirement,
+                    minLines: 6,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    decoration: const InputDecoration(
                       hintText: 'Enter your requirement here...',
                       border: InputBorder.none,
                     ),
-                    )),
+                  ),
+                ),
 
                 Container(
-                    margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                    width: double.infinity,
-                    height: double.tryParse('50'),
-                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            AppColors.dashboardGridButtonColor),
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  width: double.infinity,
+                  height: double.tryParse('50'),
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        AppColors.dashboardGridButtonColor,
                       ),
-                      onPressed: () async {
-
-                        final userInput = enteredRequirement.text; // Get the user's input from the controller
-                        print(userInput);
-                        await sendRecommendationRequest(userInput);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => RecommendationResult(
-                                  selectedRequirement: userInput,
-                                  recommendedGemstone: recommendedGemstone,
-                                )));
-                      },
-                      child: const Text(
-                        'Process',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    )),
+                    ),
+                    onPressed: () async {
+                      final userInput = enteredRequirement.text; // Get the user's input from the controller
+                      print(userInput);
+                      await sendRecommendationRequest(userInput);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => RecommendationResult(
+                            selectedRequirement: userInput,
+                            recommendedGemstone: recommendedGemstone,
+                          ),
+                        ),
+                      );
+                    },
+                    child: isLoading
+                        ? CircularProgressIndicator() // Show CircularProgressIndicator while loading
+                        : const Text(
+                            'Process',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                  ),
+                ),
               ],
-            )));
+            ),
+          ),
+        );
   }
 }

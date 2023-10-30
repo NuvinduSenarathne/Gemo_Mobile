@@ -66,9 +66,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               // mainAxisAlignment: MainAxisAlignment.center,
               child: Column(
                 children: <Widget>[
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
-                      child: SearchBarDash(onSearch: (String) {})),
+                  // Padding(
+                  //     padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
+                  //     child: SearchBarDash(onSearch: (String) {})),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
                     child: Container(

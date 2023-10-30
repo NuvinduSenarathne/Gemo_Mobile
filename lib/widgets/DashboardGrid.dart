@@ -5,7 +5,7 @@ class DashboardGrid extends StatelessWidget {
   DashboardGrid({super.key});
 
   final List<String> categories = const [
-    'Color Detection',
+    'Color, Clarity Detection',
     'Cut Prediction',
     'Recommendation',
     'Price Prediction'

@@ -57,30 +57,62 @@ class _PricePredictionState extends State<PricePrediction> {
 
   final now = DateTime.now();
 
+  bool isLoading = false; // Variable to track loading state
+  bool hasError = false; // Variable to track if there's an error
+
   Future<void> sendPredictionRequest(Map<String, dynamic> inputValues) async {
-    final url = Uri.parse('http://ec2-3-110-25-16.ap-south-1.compute.amazonaws.com:5001/priceprediction');
-    final headers = {
-      'Content-Type': 'application/json', // Set the correct Content-Type header
-    };
+    try {
+      setState(() {
+        isLoading = true; // Show loading spinner
+      });
 
-    final response = await http.post(
-      url,
-      headers: headers,
-      body: jsonEncode(inputValues), // Encode the data as JSON
-    );
+      final url =
+          Uri.parse('http://ec2-3-110-25-16.ap-south-1.compute.amazonaws.com:5001/priceprediction');
+      final headers = {
+        'Content-Type': 'application/json', // Set the correct Content-Type header
+      };
 
-    if (response.statusCode == 200) {
-      print(response.body);
-      final responseData = json.decode(response.body);
-      final predictedPrice = responseData['predicted_price'];
-      // Process the predicted price as needed
-      print('Predicted Price: $predictedPrice');
+      final response = await http.post(
+        url,
+        headers: headers,
+        body: jsonEncode(inputValues), // Encode the data as JSON
+      );
 
-      // Set the predicted price in your inputValues map
-      inputValues['Price'] = predictedPrice.toString();
-    } else {
-      print(
-          'Failed to send prediction request. Status code: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        print(response.body);
+        final responseData = json.decode(response.body);
+        final predictedPrice = responseData['predicted_price'];
+        // Process the predicted price as needed
+        print('Predicted Price: $predictedPrice');
+
+        // Set the predicted price in your inputValues map
+        inputValues['Price'] = predictedPrice.toString();
+
+        setState(() {
+          isLoading = false; // Hide loading spinner
+        });
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => PricePredictionResult(inputValues: inputValues),
+          ),
+        );
+      } else {
+        setState(() {
+          isLoading = false; // Hide loading spinner
+          hasError = true; // Show error message
+        });
+
+        print('Failed to send prediction request. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false; // Hide loading spinner
+        hasError = true; // Show error message
+      });
+
+      print('Error: $e');
     }
   }
 
@@ -305,51 +337,52 @@ class _PricePredictionState extends State<PricePrediction> {
                   ),
                 ),
                 Container(
-                    margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                    width: double.infinity,
-                    height: double.tryParse('50'),
-                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            AppColors.dashboardGridButtonColor),
-                      ),
-                      onPressed: () async {
-                        if (double.tryParse(selectedCt.text) == null) {
-                          setState(() {
-                            weightError = true;
-                          });
-                        } else {
-                          setState(() {
-                            weightError = false;
-                          });
-                        }
+  margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+  width: double.infinity,
+  height: double.tryParse('50'),
+  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+  child: ElevatedButton(
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(
+        AppColors.dashboardGridButtonColor,
+      ),
+    ),
+    onPressed: isLoading // Check if loading
+        ? null // Disable button when loading
+        : () async {
+            if (double.tryParse(selectedCt.text) == null) {
+              setState(() {
+                weightError = true;
+              });
+            } else {
+              setState(() {
+                weightError = false;
+              });
+            }
 
-                        final inputValues = {
-                          'year': now.year,
-                          'month': now.month,
-                          'day': now.day,
-                          'GemstoneName': selectedGemstone,
-                          'Color': selectedColor,
-                          'Clarity': selectedClarity,
-                          'Cut': selectedCut,
-                          'Weight': double.parse(selectedCt.text),
-                        };
-                        await sendPredictionRequest(inputValues);
+            final inputValues = {
+              'year': now.year,
+              'month': now.month,
+              'day': now.day,
+              'GemstoneName': selectedGemstone,
+              'Color': selectedColor,
+              'Clarity': selectedClarity,
+              'Cut': selectedCut,
+              'Weight': double.parse(selectedCt.text),
+            };
+            await sendPredictionRequest(inputValues);
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) =>
-                                PricePredictionResult(inputValues: inputValues),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        'Process',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    )),
+            // Navigator.push(...) code removed for brevity
+          },
+    child: isLoading
+        ? CircularProgressIndicator() // Show loading spinner
+        : Text(
+            'Process',
+            style: TextStyle(fontSize: 16),
+          ),
+  ),
+),
+
               ],
             )));
   }
