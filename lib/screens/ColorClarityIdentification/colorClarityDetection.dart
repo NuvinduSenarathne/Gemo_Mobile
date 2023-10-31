@@ -1,6 +1,5 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:gemo_app/screens/ColorClarityIdentification/colorClarityDetectionResult.dart';
 
 import '../../constants/colors.dart';
 import 'ColorClarityPrediction1.dart';

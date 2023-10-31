@@ -4,8 +4,6 @@ import 'package:gemo_app/constants/colors.dart';
 import 'package:gemo_app/screens/CutPrediction/cameraAppCut.dart';
 import 'package:gemo_app/screens/CutPrediction/cp.dart';
 
-import '../ColorClarityIdentification/cameraApp.dart';
-
 class CutPrediction extends StatelessWidget {
   const CutPrediction({super.key});
 

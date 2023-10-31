@@ -5,7 +5,6 @@ import 'package:gemo_app/screens/CutPrediction/previewPageCut.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../constants/colors.dart';
-import '../previewPage.dart';
 
 class CutPrediction1 extends StatefulWidget {
   @override

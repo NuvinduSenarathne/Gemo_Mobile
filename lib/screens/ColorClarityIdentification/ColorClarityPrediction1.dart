@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../constants/colors.dart';
 import 'PreviewPageColorClarity.dart';
-import '../previewPage.dart';
+
 
 class ColorClarityPredictionGallery extends StatefulWidget {
   @override

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gemo_app/constants/colors.dart';
 import 'package:gemo_app/screens/signin.dart';
 import 'package:gemo_app/widgets/DashboardGrid.dart';
-import 'package:gemo_app/widgets/SearchBarDash.dart';
 import 'package:gemo_app/widgets/carousel.dart';
 
 import '../services/auth.dart';

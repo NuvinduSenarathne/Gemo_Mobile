@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
-import '../../widgets/RecommendationTIle.dart';
 
 class RecommendationResult extends StatefulWidget {
   final String selectedRequirement;
