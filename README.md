@@ -19,7 +19,7 @@
           6. Diunugala M W (IT 20 2333 58)
 
 ### How to Use:
-          1.    Clone the "Gemo" repository to your local machine.
+          1. Clone the "Gemo" repository to your local machine.
           2. Install Flutter and Dart SDK.
           3. Configure any necessary API keys or settings.
           4. Build and run the application using Flutter commands.
